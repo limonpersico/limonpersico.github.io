@@ -23,7 +23,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Cabin:wght@400;500;600;700&display=swap">
 <style>
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+:root{--logo:clamp(128px,14vw,172px)}
+html{scroll-behavior:smooth;scroll-padding-top:78px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+.p-head{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px 32px;padding:16px clamp(20px,6vw,80px);background:#FFFFFF;transition:padding .25s ease,box-shadow .25s ease}
+.p-head img{display:block;width:var(--logo);height:auto;transition:width .25s ease}
+.p-head.small{padding-top:8px;padding-bottom:8px;box-shadow:0 2px 14px rgba(27,58,38,.14)}
+.p-head.small img{width:116px}
+.p-top{flex:none;height:calc(var(--logo)*.5334 + 32px)}
+#nosotros{scroll-margin-top:28px}
 body{margin:0;min-height:100vh;background:#FFFFFF;color:#1B3A26}
 p{text-wrap:pretty}
 a{color:#1F4A2C}a:hover{color:#4B7F2A}
@@ -39,14 +46,16 @@ a:focus-visible,button:focus-visible{outline:3px solid #4B7F2A;outline-offset:3p
 .p-farm{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.5vw,18px)}
 .p-farm>*{display:block;width:100%;aspect-ratio:4/5;max-height:500px;object-fit:cover;border-radius:4px clamp(40px,6vw,80px) 4px clamp(40px,6vw,80px)}
 @media (max-width:760px){.p-farm{grid-template-columns:repeat(2,minmax(0,1fr))}.p-nav{display:none!important}.p-valleft{text-align:left}.p-leaf{max-width:190px;order:-1}.p-conn{display:none}}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (max-width:760px){html{scroll-padding-top:72px}.p-head.small img{width:104px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.p-head,.p-head img{transition:none}}
 </style>
 </head>
 <body>
 <div style="min-height: 100%; display: flex; flex-direction: column; overflow: hidden; background: #FFFFFF; color: #1B3A26; font-family: Cabin, sans-serif; font-size: 20px; line-height: 1.6">
 
-<header style="display: flex; align-items: center; justify-content: space-between; gap: 16px 32px; padding: 16px clamp(20px, 6vw, 80px)">
-<a href="#inicio" aria-label="Pérsico"><img src="img/persico-logo.svg" alt="Pérsico" style="display: block; width: clamp(128px, 14vw, 172px); height: auto"></a>
+<div class="p-top" id="inicio"></div>
+<header class="p-head">
+<a href="#inicio" aria-label="Pérsico"><img src="img/persico-logo.svg" alt="Pérsico"></a>
 <div style="display: flex; align-items: center; gap: 30px">
 <nav class="p-nav" style="align-items: center; gap: 30px; font-weight: 500">
 <a href="#nosotros" style="color: #1B3A26; text-decoration: none; padding: 10px 0" data-t="nav1">Nosotros</a>
@@ -61,7 +70,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #4B7F2A;outline-offset:3p
 </div>
 </header>
 
-<section id="inicio" style="padding-bottom: clamp(70px, 9vw, 120px)">
+<section style="padding-bottom: clamp(70px, 9vw, 120px)">
 <img src="img/branch.jpg" alt="Limones persa en la rama, en la limonera de Pérsico en El Salvador" style="display: block; width: 100%; height: clamp(400px, 56vw, 720px); object-fit: cover; object-position: 50% 32%">
 <div style="position: relative; box-sizing: border-box; width: min(100% - 40px, 700px); margin: clamp(-300px, -23vw, -80px) 0 0 clamp(20px, 6vw, 80px); padding: clamp(34px, 5vw, 64px) clamp(26px, 5vw, 64px) clamp(76px, 6.4vw, 82px); border-radius: 6px clamp(80px, 13vw, 170px) 6px clamp(80px, 13vw, 170px); background: #1F4A2C; color: #FFFFFF">
 <h1 style="margin: 0; font-family: Alegreya, serif; font-weight: 500; font-size: clamp(40px, 5vw, 64px); line-height: 1.04; letter-spacing: -0.015em; text-wrap: balance" data-t="h1">Limón persa salvadoreño, cuidado día a día</h1>
@@ -205,6 +214,12 @@ function setLang(lang) {
 document.getElementById('lang-es').addEventListener('click', () => setLang('es'));
 document.getElementById('lang-en').addEventListener('click', () => setLang('en'));
 setLang(location.hash === '#en' ? 'en' : 'es');
+
+// The navbar stays pinned and gets slimmer once the page scrolls.
+const head = document.querySelector('.p-head');
+const pin = () => head.classList.toggle('small', window.scrollY > 24);
+window.addEventListener('scroll', pin, { passive: true });
+pin();
 
 // Clips loop like GIFs while they are on screen. Where motion is turned off, the still picture stays.
 if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
