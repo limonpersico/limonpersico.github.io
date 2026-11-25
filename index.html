@@ -40,7 +40,10 @@ img{max-width:100%}
 a:focus-visible,button:focus-visible{outline:3px solid #4B7F2A;outline-offset:3px}
 .lang[aria-pressed="true"]{background:#1F4A2C;color:#FFFFFF}
 .lang[aria-pressed="false"]{background:#EAF3D6;color:#1B3A26}
+.p-tools{display:flex;align-items:center;gap:30px}
 .p-nav{display:flex}
+.p-menu{display:none;order:3;align-items:center;justify-content:center;width:48px;height:44px;padding:0;border:0;border-radius:4px 16px 4px 16px;background:#C5DE6E;color:#1B3A26;cursor:pointer}
+.m-close,.p-head.open .m-open{display:none}.p-head.open .m-close{display:inline}
 .p-valleft{text-align:right}
 .p-leaf{max-width:360px}
 .clip{display:block;width:100%;object-fit:cover;background:#DCE6D0;transform:translateZ(0)}
@@ -52,6 +55,12 @@ a:focus-visible,button:focus-visible{outline:3px solid #4B7F2A;outline-offset:3p
 .p-endcard{position:relative;box-sizing:border-box;width:min(100%,640px);padding:clamp(40px,5vw,64px) clamp(26px,5vw,64px) clamp(84px,7vw,90px);border-radius:6px clamp(80px,14vw,190px) 6px clamp(80px,14vw,190px);background:#FFFFFF}
 @media (max-width:1040px){.p-end{padding-top:calc(clamp(430px,62vw,620px) - 70px);padding-bottom:clamp(60px,8vw,90px)}.p-endimg{width:100%;height:clamp(430px,62vw,620px)}}
 @media (max-width:760px){.p-farm{grid-template-columns:repeat(2,minmax(0,1fr))}.p-nav{display:none!important}.p-valleft{text-align:left}.p-leaf{max-width:190px;order:-1}.p-conn{display:none}}
+@media (max-width:760px){.p-tools{gap:4px}.p-menu{display:flex}
+.p-head.open{box-shadow:0 2px 14px rgba(27,58,38,.14)}
+.p-head.open .p-nav{display:flex!important;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch!important;gap:0!important;padding:4px clamp(20px,6vw,80px) 18px;background:#FFFFFF;box-shadow:0 14px 18px -6px rgba(27,58,38,.18)}
+.p-head.open .p-nav a{padding:14px 0!important;font-size:21px;font-weight:600;border-bottom:1px solid #DCE6D0}
+.p-head.open .p-nav a:last-child{border-bottom:0}}
+@media (max-width:379px){:root{--logo:108px}.lang,.p-menu{min-width:44px!important;width:44px}.p-head{gap:8px}}
 @media (max-width:760px){html{scroll-padding-top:72px}.p-head.small img{width:104px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.p-head,.p-head img{transition:none}}
 </style>
@@ -62,8 +71,9 @@ a:focus-visible,button:focus-visible{outline:3px solid #4B7F2A;outline-offset:3p
 <div class="p-top" id="inicio"></div>
 <header class="p-head">
 <a href="#inicio" aria-label="Pérsico"><img src="img/persico-logo.svg" alt="Pérsico"></a>
-<div style="display: flex; align-items: center; gap: 30px">
-<nav class="p-nav" style="align-items: center; gap: 30px; font-weight: 500">
+<div class="p-tools">
+<button type="button" id="menu" class="p-menu" aria-expanded="false" aria-controls="nav" aria-label="Menú"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path class="m-open" d="M4 7H20M4 12H20M4 17H20"></path><path class="m-close" d="M6 6L18 18M18 6L6 18"></path></svg></button>
+<nav id="nav" class="p-nav" style="align-items: center; gap: 30px; font-weight: 500">
 <a href="#nosotros" style="color: #1B3A26; text-decoration: none; padding: 10px 0" data-t="nav1">Nosotros</a>
 <a href="#hacemos" style="color: #1B3A26; text-decoration: none; padding: 10px 0" data-t="nav2">Lo que hacemos</a>
 <a href="#valores" style="color: #1B3A26; text-decoration: none; padding: 10px 0" data-t="nav3">Valores</a>
@@ -92,7 +102,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #4B7F2A;outline-offset:3p
 <img src="img/team.jpg" alt="El equipo que cuida de Pérsico, en la limonera" style="display: block; width: 100%; aspect-ratio: 6 / 5; object-fit: cover; border-radius: 6px clamp(90px, 14vw, 180px) 6px clamp(90px, 14vw, 180px)">
 <div>
 <h2 style="margin: 0 0 22px; font-family: 'Young Serif', serif; font-weight: 400; font-size: min(8.4vw, clamp(30px, 3.43vw, 44px)); line-height: 1.12; letter-spacing: -0.015em; text-wrap: balance" data-t="mission">Nuestro compromiso siempre ha sido y será producir un limón persa de la mejor calidad.</h2>
-<p style="margin: 0; max-width: 520px; font-size: 20.5px" data-t="who">Somos una limonera salvadoreña. Sembramos, cuidamos y cortamos nuestro propio limón para que cada cliente reciba calidad.</p>
+<p style="margin: 0; max-width: 520px; font-size: 20.5px" data-t="who">Somos una limonera en Zacatecoluca, La Paz. El limón que vendemos lo sembramos, cuidamos y cortamos nosotros mismos.</p>
 </div>
 </section>
 
@@ -107,7 +117,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #4B7F2A;outline-offset:3p
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); align-items: center; background: #F3EFC9">
 <img src="img/crate.jpg" alt="Limón persa fresco en canasta" style="display: block; width: 100%; height: clamp(320px, 34vw, 440px); object-fit: cover; border-radius: 0 clamp(90px, 14vw, 180px) 0 0">
-<div style="padding: clamp(32px, 4vw, 48px) clamp(20px, 6vw, 80px) clamp(44px, 4vw, 48px)"><h3 class="p-row" style="margin: 0 0 10px; font-family: 'Young Serif', serif; font-weight: 400; line-height: 1.12; letter-spacing: -0.015em" data-t="w3t">Vendemos por mayor</h3><p style="margin: 0; max-width: 440px; font-size: 20.5px" data-t="w3">Brindamos limón a mayoristas, que pueden recoger directo en nuestra limonera.</p></div>
+<div style="padding: clamp(32px, 4vw, 48px) clamp(20px, 6vw, 80px) clamp(44px, 4vw, 48px)"><h3 class="p-row" style="margin: 0 0 10px; font-family: 'Young Serif', serif; font-weight: 400; line-height: 1.12; letter-spacing: -0.015em" data-t="w3t">Vendemos por mayor</h3><p style="margin: 0; max-width: 440px; font-size: 20.5px" data-t="w3">Brindamos limón a mayoristas. Recójalo en nuestra limonera o se lo llevamos.</p></div>
 </div>
 </section>
 
@@ -115,7 +125,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #4B7F2A;outline-offset:3p
 <h2 style="margin: 0 0 clamp(32px, 4vw, 48px); font-family: 'Young Serif', serif; font-weight: 400; font-size: clamp(32px, 3.87vw, 49px); line-height: 1.12; letter-spacing: -0.015em" data-t="bizT">Para su negocio</h2>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 36px 48px">
 <div><svg width="60" height="60" viewBox="0 0 60 60" fill="none" stroke="#1F4A2C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M30 54C18 40 12 32 12 23A18 18 0 0 1 48 23C48 32 42 40 30 54Z" fill="#C5DE6E"></path><circle cx="30" cy="23" r="7" fill="#FFFFFF"></circle></svg><h3 style="margin: 12px 0 4px; font-family: 'Young Serif', serif; font-weight: 400; font-size: 25px; line-height: 1.12; letter-spacing: -0.015em" data-t="b1t">Dónde estamos</h3><p style="margin: 0; max-width: 320px; text-wrap: balance" data-t="b1">Zacatecoluca, La Paz, El Salvador.</p></div>
-<div><svg width="60" height="60" viewBox="0 0 60 60" fill="none" stroke="#1F4A2C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="20" cy="22" r="9" fill="#C5DE6E"></circle><circle cx="40" cy="22" r="9" fill="#C5DE6E"></circle><circle cx="30" cy="16" r="9" fill="#C5DE6E"></circle><path d="M6 26H54L49 52H11Z" fill="#FFFFFF"></path><path d="M8 38H52M22 26L24 52M38 26L36 52"></path></svg><h3 style="margin: 12px 0 4px; font-family: 'Young Serif', serif; font-weight: 400; font-size: 25px; line-height: 1.12; letter-spacing: -0.015em" data-t="b2t">Cómo comprar</h3><p style="margin: 0; max-width: 320px; text-wrap: balance" data-t="b2">Escríbanos y recoja en la limonera, o se lo llevamos a su negocio.</p></div>
+<div><svg width="60" height="60" viewBox="0 0 60 60" fill="none" stroke="#1F4A2C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="20" cy="22" r="9" fill="#C5DE6E"></circle><circle cx="40" cy="22" r="9" fill="#C5DE6E"></circle><circle cx="30" cy="16" r="9" fill="#C5DE6E"></circle><path d="M6 26H54L49 52H11Z" fill="#FFFFFF"></path><path d="M8 38H52M22 26L24 52M38 26L36 52"></path></svg><h3 style="margin: 12px 0 4px; font-family: 'Young Serif', serif; font-weight: 400; font-size: 25px; line-height: 1.12; letter-spacing: -0.015em" data-t="b2t">Cómo comprar</h3><p style="margin: 0; max-width: 320px; text-wrap: balance" data-t="b2">Escríbanos con su pedido y coordinamos la recogida o la entrega a su negocio.</p></div>
 <div><svg width="60" height="60" viewBox="0 0 60 60" fill="none" stroke="#1F4A2C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14H36V46H4Z" fill="#C5DE6E"></path><path d="M36 25H47L56 35V46H36Z" fill="#FFFFFF"></path><path d="M44 25V35H56"></path><circle cx="17" cy="47" r="6" fill="#FFFFFF"></circle><circle cx="45" cy="47" r="6" fill="#FFFFFF"></circle></svg><h3 style="margin: 12px 0 4px; font-family: 'Young Serif', serif; font-weight: 400; font-size: 25px; line-height: 1.12; letter-spacing: -0.015em" data-t="b3t">Entregas</h3><p style="margin: 0; max-width: 320px; text-wrap: balance" data-t="b3">Hacemos entregas en San Salvador y sus alrededores.</p></div>
 </div>
 </section>
@@ -139,8 +149,8 @@ a:focus-visible,button:focus-visible{outline:3px solid #4B7F2A;outline-offset:3p
 <h2 style="margin: 0 0 clamp(32px, 4vw, 52px); text-align: center; font-family: 'Young Serif', serif; font-weight: 400; font-size: clamp(32px, 3.87vw, 49px); line-height: 1.12; letter-spacing: -0.015em" data-t="valT">Lo que nos guía</h2>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 34px 22px; align-items: stretch">
 <div class="p-valleft" style="display: flex; flex-direction: column; gap: 34px">
-<div style="flex: 1 1 0; padding-top: clamp(0px, 8vw, 104px)"><h3 style="margin: 0 0 4px; font-family: 'Young Serif', serif; font-weight: 400; font-size: 28px; line-height: 1.12; color: #D8EB97; letter-spacing: -0.015em" data-t="v1t">Calidad</h3><p style="margin: 0" data-t="v1">La cosecha se vigila día a día.</p></div>
-<div style="flex: 1 1 0; padding-top: clamp(0px, 2vw, 26px)"><h3 style="margin: 0 0 4px; font-family: 'Young Serif', serif; font-weight: 400; font-size: 28px; line-height: 1.12; color: #D8EB97; letter-spacing: -0.015em" data-t="v2t">Plantas certificadas</h3><p style="margin: 0" data-t="v2">Seguimos creciendo, siempre con plantas certificadas.</p></div>
+<div style="flex: 1 1 0; padding-top: clamp(0px, 8vw, 104px)"><h3 style="margin: 0 0 4px; font-family: 'Young Serif', serif; font-weight: 400; font-size: 28px; line-height: 1.12; color: #D8EB97; letter-spacing: -0.015em" data-t="v1t">Calidad</h3><p style="margin: 0" data-t="v1">Estamos pendientes de cada cosecha.</p></div>
+<div style="flex: 1 1 0; padding-top: clamp(0px, 2vw, 26px)"><h3 style="margin: 0 0 4px; font-family: 'Young Serif', serif; font-weight: 400; font-size: 28px; line-height: 1.12; color: #D8EB97; letter-spacing: -0.015em" data-t="v2t">Plantas certificadas</h3><p style="margin: 0" data-t="v2">Así seguimos creciendo, siembra tras siembra.</p></div>
 </div>
 <svg class="p-leaf" viewBox="0 0 360 520" aria-hidden="true" style="display: block; justify-self: center; width: 100%; height: auto" fill="none" stroke="#C5DE6E" stroke-linecap="round" stroke-linejoin="round"><path d="M180 16C290 96 330 230 304 350C282 440 232 486 180 500C128 486 78 440 56 350C30 230 70 96 180 16Z" stroke-width="4" fill="#2A5E38"></path><path d="M180 64V516" stroke-width="5"></path><g stroke-width="3"><path d="M180 226C222 206 260 178 284 146"></path><path d="M180 226C138 206 100 178 76 146"></path><path d="M180 410C226 396 270 376 302 350"></path><path d="M180 410C134 396 90 376 58 350"></path></g><g stroke-width="2"><path d="M180 146C206 132 226 116 242 96M180 146C154 132 134 116 118 96M180 318C228 300 270 276 300 248M180 318C132 300 90 276 60 248M180 468C206 462 232 452 252 438M180 468C154 462 128 452 108 438"></path></g><g class="p-conn" stroke-width="3"><path d="M284 146H352M76 146H8M302 350H352M58 350H8"></path></g><g class="p-conn" fill="#C5DE6E" stroke="none"><circle cx="352" cy="146" r="6"></circle><circle cx="8" cy="146" r="6"></circle><circle cx="352" cy="350" r="6"></circle><circle cx="8" cy="350" r="6"></circle></g></svg>
 <div style="display: flex; flex-direction: column; gap: 34px">
@@ -175,17 +185,17 @@ nav1: 'Nosotros', nav2: 'Lo que hacemos', nav3: 'Valores', nav4: 'Contacto',
 h1: 'Limón persa salvadoreño, cuidado día a día',
 lead: 'Pérsico cultiva limón persa 100% salvadoreño, de nuestra cosecha a su mesa.',
 mission: 'Nuestro compromiso siempre ha sido y será producir un limón persa de la mejor calidad.',
-who: 'Somos una limonera salvadoreña. Sembramos, cuidamos y cortamos nuestro propio limón para que cada cliente reciba calidad.',
+who: 'Somos una limonera en Zacatecoluca, La Paz. El limón que vendemos lo sembramos, cuidamos y cortamos nosotros mismos.',
 w1t: 'Cuidamos', w1: 'Vigilamos la maduración y alimentamos cada árbol con los nutrientes que necesita.',
 w2t: 'Cortamos y clasificamos', w2: 'Seleccionamos cada corta antes de que salga de la finca.',
-w3t: 'Vendemos por mayor', w3: 'Brindamos limón a mayoristas, que pueden recoger directo en nuestra limonera.',
+w3t: 'Vendemos por mayor', w3: 'Brindamos limón a mayoristas. Recójalo en nuestra limonera o se lo llevamos.',
 bizT: 'Para su negocio',
 b1t: 'Dónde estamos', b1: 'Zacatecoluca, La Paz, El Salvador.',
-b2t: 'Cómo comprar', b2: 'Escríbanos y recoja en la limonera, o se lo llevamos a su negocio.',
+b2t: 'Cómo comprar', b2: 'Escríbanos con su pedido y coordinamos la recogida o la entrega a su negocio.',
 b3t: 'Entregas', b3: 'Hacemos entregas en San Salvador y sus alrededores.',
 valT: 'Lo que nos guía',
-v1t: 'Calidad', v1: 'La cosecha se vigila día a día.',
-v2t: 'Plantas certificadas', v2: 'Seguimos creciendo, siempre con plantas certificadas.',
+v1t: 'Calidad', v1: 'Estamos pendientes de cada cosecha.',
+v2t: 'Plantas certificadas', v2: 'Así seguimos creciendo, siembra tras siembra.',
 v3t: 'Nuestra gente', v3: 'Detrás de cada limón está el equipo que cuida de Pérsico.',
 v4t: 'Orgullo salvadoreño', v4: 'Todo nuestro limón nace y crece en El Salvador.',
 igT: 'Desde la finca', ctaT: 'Conversemos sobre limón para su negocio', cta: 'Escríbanos por WhatsApp o mándenos un mensaje en Instagram.',
@@ -196,17 +206,17 @@ nav1: 'About', nav2: 'What we do', nav3: 'Values', nav4: 'Contact',
 h1: 'Salvadoran Persian limes, tended day by day',
 lead: 'Pérsico grows 100% Salvadoran Persian limes, from our harvest to your table.',
 mission: 'Our commitment has always been, and will always be, to grow Persian limes of the best quality.',
-who: 'We are a Salvadoran lime farm. We plant, tend and pick our own limes so every customer receives quality.',
+who: 'We are a lime farm in Zacatecoluca, La Paz. The limes we sell are ones we plant, tend and pick ourselves.',
 w1t: 'We tend', w1: 'We watch the ripening and feed each tree the nutrients it needs.',
 w2t: 'We pick and sort', w2: 'We sort every harvest before it leaves the farm.',
-w3t: 'We sell wholesale', w3: 'We supply wholesalers, who can pick up directly at our farm.',
+w3t: 'We sell wholesale', w3: 'We supply wholesalers. Pick up at our farm or we bring it to you.',
 bizT: 'For your business',
 b1t: 'Where we are', b1: 'Zacatecoluca, La Paz, El Salvador.',
-b2t: 'How to buy', b2: 'Write to us and pick up at the farm, or we deliver to your business.',
+b2t: 'How to buy', b2: 'Send us your order and we will arrange pickup or delivery to your business.',
 b3t: 'Delivery', b3: 'We deliver to San Salvador and nearby areas.',
 valT: 'What guides us',
-v1t: 'Quality', v1: 'The harvest is checked day by day.',
-v2t: 'Certified plants', v2: 'We keep growing, always with certified plants.',
+v1t: 'Quality', v1: 'We keep a close eye on every harvest.',
+v2t: 'Certified plants', v2: 'It is how we keep growing, planting after planting.',
 v3t: 'Our people', v3: 'Behind every lime is the team that looks after Pérsico.',
 v4t: 'Salvadoran pride', v4: 'All our limes are born and grown in El Salvador.',
 igT: 'From the farm', ctaT: 'Let’s talk about limes for your business', cta: 'Write to us on WhatsApp or send us a message on Instagram.',
@@ -216,6 +226,7 @@ function setLang(lang) {
   const t = lang === 'en' ? EN : ES;
   document.documentElement.lang = lang;
   document.querySelectorAll('[data-t]').forEach(el => { el.textContent = t[el.dataset.t]; });
+  document.getElementById('menu').setAttribute('aria-label', lang === 'en' ? 'Menu' : 'Menú');
   document.getElementById('lang-es').setAttribute('aria-pressed', String(lang === 'es'));
   document.getElementById('lang-en').setAttribute('aria-pressed', String(lang === 'en'));
 }
@@ -228,6 +239,15 @@ const head = document.querySelector('.p-head');
 const pin = () => head.classList.toggle('small', window.scrollY > 24);
 window.addEventListener('scroll', pin, { passive: true });
 pin();
+
+// Phone menu: opens under the bar, closes after a choice, a tap outside, Escape or a wider screen.
+const menu = document.getElementById('menu');
+const showMenu = open => { head.classList.toggle('open', open); menu.setAttribute('aria-expanded', String(open)); };
+menu.addEventListener('click', () => showMenu(!head.classList.contains('open')));
+document.querySelectorAll('#nav a').forEach(a => a.addEventListener('click', () => showMenu(false)));
+document.addEventListener('click', e => { if (!head.contains(e.target)) showMenu(false); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && head.classList.contains('open')) { showMenu(false); menu.focus(); } });
+matchMedia('(min-width:761px)').addEventListener('change', () => showMenu(false));
 
 // Clips loop like GIFs while they are on screen. Where motion is turned off, the still picture stays.
 if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
