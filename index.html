@@ -34,7 +34,11 @@ a:focus-visible,button:focus-visible{outline:3px solid #4B7F2A;outline-offset:3p
 .p-nav{display:flex}
 .p-valleft{text-align:right}
 .p-leaf{max-width:360px}
-@media (max-width:760px){.p-nav{display:none!important}.p-valleft{text-align:left}.p-leaf{max-width:190px;order:-1}.p-conn{display:none}}
+.clip{display:block;width:100%;object-fit:cover;background:#DCE6D0;transform:translateZ(0)}
+.clip::-webkit-media-controls-start-playback-button{display:none!important;-webkit-appearance:none}
+.p-farm{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.5vw,18px)}
+.p-farm>*{display:block;width:100%;aspect-ratio:4/5;max-height:500px;object-fit:cover;border-radius:4px clamp(40px,6vw,80px) 4px clamp(40px,6vw,80px)}
+@media (max-width:760px){.p-farm{grid-template-columns:repeat(2,minmax(0,1fr))}.p-nav{display:none!important}.p-valleft{text-align:left}.p-leaf{max-width:190px;order:-1}.p-conn{display:none}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
@@ -79,11 +83,11 @@ a:focus-visible,button:focus-visible{outline:3px solid #4B7F2A;outline-offset:3p
 
 <section id="hacemos">
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); align-items: center; background: #DCEBF4">
-<img src="img/walk.jpg" alt="Recorrido diario entre los árboles de limón" style="display: block; width: 100%; height: clamp(320px, 34vw, 440px); object-fit: cover; object-position: 50% 94%; border-radius: 0 0 clamp(90px, 14vw, 180px) 0">
+<video class="clip" muted loop playsinline preload="none" poster="img/clip-walk.jpg" src="video/clip-walk.mp4" role="img" aria-label="Recorrido diario entre los árboles de limón" style="height: clamp(320px, 34vw, 440px); border-radius: 0 0 clamp(90px, 14vw, 180px) 0"></video>
 <div style="padding: clamp(32px, 4vw, 48px) clamp(20px, 6vw, 80px) clamp(44px, 4vw, 48px)"><h3 style="margin: 0 0 10px; font-family: Alegreya, serif; font-weight: 500; font-size: clamp(34px, 3.8vw, 48px); line-height: 1.1" data-t="w1t">Cuidamos</h3><p style="margin: 0; max-width: 440px; font-size: 21px" data-t="w1">Vigilamos la maduración y alimentamos cada árbol con los nutrientes que necesita.</p></div>
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); align-items: center; direction: rtl; background: #EAF3D6">
-<img src="img/sort.jpg" alt="Clasificación de limón en la finca" style="display: block; width: 100%; height: clamp(320px, 34vw, 440px); object-fit: cover; object-position: 50% 76%; border-radius: clamp(90px, 14vw, 180px) 0 0 0">
+<video class="clip" muted loop playsinline preload="none" poster="img/clip-sort.jpg" src="video/clip-sort.mp4" role="img" aria-label="El equipo clasifica el limón en la finca" style="height: clamp(320px, 34vw, 440px); border-radius: clamp(90px, 14vw, 180px) 0 0 0"></video>
 <div style="direction: ltr; padding: clamp(32px, 4vw, 48px) clamp(20px, 6vw, 80px) clamp(44px, 4vw, 48px)"><h3 style="margin: 0 0 10px; font-family: Alegreya, serif; font-weight: 500; font-size: clamp(34px, 3.8vw, 48px); line-height: 1.1" data-t="w2t">Cortamos y clasificamos</h3><p style="margin: 0; max-width: 440px; font-size: 21px" data-t="w2">Seleccionamos cada corta antes de que salga de la finca.</p></div>
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); align-items: center; background: #F3EFC9">
@@ -101,11 +105,18 @@ a:focus-visible,button:focus-visible{outline:3px solid #4B7F2A;outline-offset:3p
 </div>
 </section>
 
-<section style="position: relative; min-height: clamp(300px, 50vw, 640px); display: flex; background: #173A2A">
-<img src="img/gate.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 34%; opacity: 0.5">
-<div style="position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; padding: 40px 20px; text-align: center; color: #FFFFFF">
-<span style="display: flex; align-items: center; justify-content: center; width: 100px; height: 100px; border-radius: 6px 50px 6px 50px; background: #C5DE6E"><svg width="38" height="38" viewBox="0 0 24 24" fill="#1B3A26" aria-hidden="true"><path d="M7 4l14 8-14 8z"></path></svg></span>
-<p style="margin: 0; font-family: Alegreya, serif; font-weight: 500; font-size: clamp(26px, 3.2vw, 42px); line-height: 1.15; text-shadow: 0 1px 14px #173A2A" data-t="video">Aquí va el video de la finca</p>
+<section id="finca" style="padding: clamp(70px, 8vw, 110px) clamp(20px, 6vw, 80px); background: #EAF3D6">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 32px; margin-bottom: 32px">
+<h2 style="margin: 0; font-family: Alegreya, serif; font-weight: 500; font-size: clamp(36px, 4.4vw, 56px); line-height: 1.1" data-t="igT">Desde la finca</h2>
+<a href="https://www.instagram.com/limon_persico_sa/" style="color: #1F4A2C; font-weight: 700; padding: 10px 0">@limon_persico_sa</a>
+</div>
+<div class="p-farm">
+<video class="clip" muted loop playsinline preload="none" poster="img/clip-gate.jpg" src="video/clip-gate.mp4" role="img" aria-label="El portón de la finca"></video>
+<video class="clip" muted loop playsinline preload="none" poster="img/clip-orchard.jpg" src="video/clip-orchard.mp4" role="img" aria-label="Los árboles de limón"></video>
+<img src="img/limes-branch-2026.jpg" alt="Limones persa en la rama">
+<video class="clip" muted loop playsinline preload="none" poster="img/clip-trees.jpg" src="video/clip-trees.mp4" role="img" aria-label="Llegada de nuevas plantas certificadas"></video>
+<video class="clip" muted loop playsinline preload="none" poster="img/clip-pavilion.jpg" src="video/clip-pavilion.mp4" role="img" aria-label="El galerón donde se clasifica el limón"></video>
+<video class="clip" muted loop playsinline preload="none" poster="img/clip-van.jpg" src="video/clip-van.mp4" role="img" aria-label="Se carga el limón para entregar"></video>
 </div>
 </section>
 
@@ -121,19 +132,6 @@ a:focus-visible,button:focus-visible{outline:3px solid #4B7F2A;outline-offset:3p
 <div style="flex: 1 1 0; padding-top: clamp(0px, 8vw, 104px)"><h3 style="margin: 0 0 4px; font-family: Alegreya, serif; font-weight: 500; font-size: 32px; line-height: 1.15; color: #D8EB97" data-t="v3t">Nuestra gente</h3><p style="margin: 0" data-t="v3">Detrás de cada limón está el equipo que cuida de Pérsico.</p></div>
 <div style="flex: 1 1 0; padding-top: clamp(0px, 2vw, 26px)"><h3 style="margin: 0 0 4px; font-family: Alegreya, serif; font-weight: 500; font-size: 32px; line-height: 1.15; color: #D8EB97" data-t="v4t">Orgullo salvadoreño</h3><p style="margin: 0" data-t="v4">Todo nuestro limón nace y crece en El Salvador.</p></div>
 </div>
-</div>
-</section>
-
-<section style="padding: clamp(70px, 8vw, 110px) clamp(20px, 6vw, 80px); background: #EAF3D6">
-<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 32px; margin-bottom: 32px">
-<h2 style="margin: 0; font-family: Alegreya, serif; font-weight: 500; font-size: clamp(36px, 4.4vw, 56px); line-height: 1.1" data-t="igT">Desde la finca</h2>
-<a href="https://www.instagram.com/limon_persico_sa/" style="color: #1F4A2C; font-weight: 700; padding: 10px 0">@limon_persico_sa</a>
-</div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(46%, 220px), 1fr)); gap: clamp(10px, 1.5vw, 18px)">
-<img src="img/sky.jpg" alt="Vista de la limonera" style="display: block; width: 100%; aspect-ratio: 5 / 6; object-fit: cover; border-radius: 4px clamp(40px, 6vw, 70px) 4px clamp(40px, 6vw, 70px)">
-<img src="img/closeup.jpg" alt="Limón persa de cerca" style="display: block; width: 100%; aspect-ratio: 5 / 6; object-fit: cover; border-radius: 4px clamp(40px, 6vw, 70px) 4px clamp(40px, 6vw, 70px)">
-<img src="img/gate.jpg" alt="El portón de la finca" style="display: block; width: 100%; aspect-ratio: 5 / 6; object-fit: cover; object-position: 50% 22%; border-radius: 4px clamp(40px, 6vw, 70px) 4px clamp(40px, 6vw, 70px)">
-<img src="img/lime-a.jpg" alt="Un limón persa" style="display: block; width: 100%; aspect-ratio: 5 / 6; object-fit: cover; border-radius: 4px clamp(40px, 6vw, 70px) 4px clamp(40px, 6vw, 70px)">
 </div>
 </section>
 
@@ -168,7 +166,6 @@ bizT: 'Para su negocio',
 b1t: 'Dónde estamos', b1: 'Zacatecoluca, La Paz, El Salvador.',
 b2t: 'Cómo comprar', b2: 'Escríbanos y recoja en la limonera, o se lo llevamos a su negocio.',
 b3t: 'Entregas', b3: 'Hacemos entregas en San Salvador y sus alrededores.',
-video: 'Aquí va el video de la finca',
 valT: 'Lo que nos guía',
 v1t: 'Calidad', v1: 'La cosecha se vigila día a día.',
 v2t: 'Plantas certificadas', v2: 'Seguimos creciendo, siempre con plantas certificadas.',
@@ -190,7 +187,6 @@ bizT: 'For your business',
 b1t: 'Where we are', b1: 'Zacatecoluca, La Paz, El Salvador.',
 b2t: 'How to buy', b2: 'Write to us and pick up at the farm, or we deliver to your business.',
 b3t: 'Delivery', b3: 'We deliver to San Salvador and nearby areas.',
-video: 'The farm video goes here',
 valT: 'What guides us',
 v1t: 'Quality', v1: 'The harvest is checked day by day.',
 v2t: 'Certified plants', v2: 'We keep growing, always with certified plants.',
@@ -209,6 +205,15 @@ function setLang(lang) {
 document.getElementById('lang-es').addEventListener('click', () => setLang('es'));
 document.getElementById('lang-en').addEventListener('click', () => setLang('en'));
 setLang(location.hash === '#en' ? 'en' : 'es');
+
+// Clips loop like GIFs while they are on screen. Where motion is turned off, the still picture stays.
+if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const watch = new IntersectionObserver(list => list.forEach(e => {
+    if (e.isIntersecting) e.target.play().catch(() => {});
+    else e.target.pause();
+  }), { rootMargin: '150px 0px' });
+  document.querySelectorAll('video.clip').forEach(v => watch.observe(v));
+}
 </script>
 </body>
 </html>
