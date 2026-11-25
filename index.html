@@ -45,6 +45,10 @@ a:focus-visible,button:focus-visible{outline:3px solid #4B7F2A;outline-offset:3p
 .clip::-webkit-media-controls-start-playback-button{display:none!important;-webkit-appearance:none}
 .p-farm{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.5vw,18px)}
 .p-farm>*{display:block;width:100%;aspect-ratio:4/5;max-height:500px;object-fit:cover;border-radius:4px clamp(40px,6vw,80px) 4px clamp(40px,6vw,80px)}
+.p-end{position:relative;display:flex;align-items:center;overflow:hidden;padding:clamp(80px,9vw,120px) clamp(20px,6vw,80px)}
+.p-endimg{position:absolute;top:0;left:0;width:112%;max-width:none;height:100%;object-fit:cover;object-position:50% 60%}
+.p-endcard{position:relative;box-sizing:border-box;width:min(100%,640px);padding:clamp(40px,5vw,64px) clamp(26px,5vw,64px) clamp(84px,7vw,90px);border-radius:6px clamp(80px,14vw,190px) 6px clamp(80px,14vw,190px);background:#FFFFFF}
+@media (max-width:1040px){.p-end{padding-top:calc(clamp(430px,62vw,620px) - 70px);padding-bottom:clamp(60px,8vw,90px)}.p-endimg{width:100%;height:clamp(430px,62vw,620px)}}
 @media (max-width:760px){.p-farm{grid-template-columns:repeat(2,minmax(0,1fr))}.p-nav{display:none!important}.p-valleft{text-align:left}.p-leaf{max-width:190px;order:-1}.p-conn{display:none}}
 @media (max-width:760px){html{scroll-padding-top:72px}.p-head.small img{width:104px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.p-head,.p-head img{transition:none}}
@@ -115,14 +119,14 @@ a:focus-visible,button:focus-visible{outline:3px solid #4B7F2A;outline-offset:3p
 </section>
 
 <section id="finca" style="padding: clamp(70px, 8vw, 110px) clamp(20px, 6vw, 80px); background: #EAF3D6">
-<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 32px; margin-bottom: 32px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; margin-bottom: 32px">
 <h2 style="margin: 0; font-family: Alegreya, serif; font-weight: 500; font-size: clamp(36px, 4.4vw, 56px); line-height: 1.1" data-t="igT">Desde la finca</h2>
-<a href="https://www.instagram.com/limon_persico_sa/" style="color: #1F4A2C; font-weight: 700; padding: 10px 0">@limon_persico_sa</a>
+<a href="https://www.instagram.com/limon_persico_sa/" aria-label="Instagram @limon_persico_sa" style="display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 4px 22px 4px 22px; background: #1F4A2C; color: #FFFFFF; font-weight: 700; text-decoration: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="flex: none"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"></circle></svg>@limon_persico_sa</a>
 </div>
 <div class="p-farm">
 <video class="clip" muted loop playsinline preload="none" poster="img/clip-gate.jpg" src="video/clip-gate.mp4" role="img" aria-label="El portón de la finca"></video>
 <video class="clip" muted loop playsinline preload="none" poster="img/clip-orchard.jpg" src="video/clip-orchard.mp4" role="img" aria-label="Los árboles de limón"></video>
-<img src="img/limes-branch-2026.jpg" alt="Limones persa en la rama">
+<video class="clip" muted loop playsinline preload="none" poster="img/clip-limes.jpg" src="video/clip-limes.mp4" role="img" aria-label="Limones recién cortados"></video>
 <video class="clip" muted loop playsinline preload="none" poster="img/clip-trees.jpg" src="video/clip-trees.mp4" role="img" aria-label="Llegada de nuevas plantas certificadas"></video>
 <video class="clip" muted loop playsinline preload="none" poster="img/clip-pavilion.jpg" src="video/clip-pavilion.mp4" role="img" aria-label="El galerón donde se clasifica el limón"></video>
 <video class="clip" muted loop playsinline preload="none" poster="img/clip-van.jpg" src="video/clip-van.mp4" role="img" aria-label="Se carga el limón para entregar"></video>
@@ -144,14 +148,16 @@ a:focus-visible,button:focus-visible{outline:3px solid #4B7F2A;outline-offset:3p
 </div>
 </section>
 
-<section id="contacto" style="flex: 1; position: relative; display: flex; flex-direction: column; justify-content: flex-end; background: #1F4A2C">
-<img src="img/pile-2.jpg" alt="Limones recién cortados" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
-<div style="position: relative; box-sizing: border-box; width: min(100% - 40px, 820px); margin: clamp(80px, 9vw, 120px) auto; padding: clamp(40px, 6vw, 80px) clamp(26px, 6vw, 80px) clamp(84px, 7vw, 90px); border-radius: 6px clamp(80px, 14vw, 190px) 6px clamp(80px, 14vw, 190px); background: #FFFFFF">
+<section id="contacto" style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; background: #1F4A2C">
+<div class="p-end">
+<picture><source media="(max-width:760px)" srcset="img/limes-branch-2026.jpg"><img class="p-endimg" src="img/limes-end-2026.jpg" alt="Limones persa en la rama, en la finca de Pérsico"></picture>
+<div class="p-endcard">
 <h2 style="margin: 0; font-family: Alegreya, serif; font-weight: 500; font-size: clamp(38px, 4.8vw, 60px); line-height: 1.08; letter-spacing: -0.015em; text-wrap: balance" data-t="ctaT">Conversemos sobre limón para su negocio</h2>
 <p style="margin: 18px 0 28px; max-width: 500px; font-size: 21px" data-t="cta">Escríbanos por WhatsApp o mándenos un mensaje en Instagram.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 12px">
 <a aria-label="WhatsApp +1 (424) 478-3460" href="https://wa.me/14244783460" style="display: inline-flex; align-items: center; gap: 10px; min-height: 58px; padding: 0 26px; line-height: 1.25; border-radius: 4px 24px 4px 24px; background: #1F4A2C; color: #FFFFFF; font-weight: 700; text-decoration: none"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M4 20l1.3-4A8 8 0 1 1 8.2 18.8z"></path><path d="M9 9.2c0 3.2 2.6 5.8 5.8 5.8l1-1.4-2-1.2-1 .8a4.6 4.6 0 0 1-2-2l.8-1-1.2-2z"></path></svg>+1 (424) 478-3460</a>
 <a href="https://www.instagram.com/limon_persico_sa/" style="display: inline-flex; align-items: center; min-height: 58px; padding: 0 28px; border-radius: 4px 24px 4px 24px; background: #C5DE6E; color: #1B3A26; font-weight: 700; text-decoration: none">@limon_persico_sa</a>
+</div>
 </div>
 </div>
 <footer style="position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; padding: 30px clamp(20px, 6vw, 80px) clamp(30px, 4vw, 34px); background: #1F4A2C; color: #FFFFFF">
